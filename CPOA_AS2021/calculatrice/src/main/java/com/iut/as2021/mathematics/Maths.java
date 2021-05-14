@@ -9,26 +9,18 @@ public class Maths implements IMaths {
 	public int addition(int a, int b) {
 		System.out.println("a = " + a);
 		System.out.println("b = " + b);
-		System.out.println("res = " + (a+b));
-
 		return a + b;
 	}
 
 	@Override
 	public int soustration(int a, int b) {
-		System.out.println("a = " + a);
-		System.out.println("b = " + b);
-		System.out.println("res = " + (a-b));
 		return a - b;
 	}
 
 	@Override
 	public int multiplication(int a, int b) {
-		// Ecrire l'implementation de multiplication en utilisant que des additions !
-		// Tester tous les cas possibles (positifs, negatifs, 0 ...).
-		System.out.println("a = " + a);
-		System.out.println("b = " + b);
-		System.out.println("res = " + (a*b));
+		// Ecrire l'impl�mentation de multiplication en utilisant que des additions !
+		// Tester tous les cas possibles (positifs, n�gatifs, 0 ...).
 		return a * b;
 	}
 
@@ -38,9 +30,6 @@ public class Maths implements IMaths {
 			throw new MathsExceptions("Division par zero impossible");
 		}
 		try {
-			System.out.println("a = " + a);
-			System.out.println("b = " + b);
-			System.out.println("res = " + (a/b));
 			return a / b;
 		} catch (Exception e) {
 			throw new MathsExceptions(e.getMessage());

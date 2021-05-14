@@ -2,22 +2,14 @@ package com.iut.as2021.tools;
 
 public class IutTools {
 
-
-
-    public static String getLeftExpression(String expression, int IndexOperator) {
-        return expression.substring(0, IndexOperator).trim();
+    public static String getLeftExpression(String expression, int pos) {
+        return expression.substring(0, pos).trim();
     }
 
     public static String getRightExpression(String expression, int pos) {
-        String res = "";
-
-        for (int i = 0; i < expression.length(); i++){
-
-        }
-
-        return res;
+        return expression.substring(pos + 1).trim();
     }
-
+    
     public static String getLastLeftExpression(String expression, int IndexOperator) {
         String res = "";
 
@@ -193,7 +185,7 @@ public class IutTools {
                 number = true;
 
             }else if ((expression.charAt(i) < 48) || (expression.charAt(i) > 57) && (number == true)){
-                System.out.println("    JE SUIS RENTRE DANS LE ELSE IF (n'est pas un nb && en a dÃ©jÃ  vu 1 ) !!!");
+                System.out.println("    JE SUIS RENTRE DANS LE ELSE IF (n'est pas un nb && en a déjà vu 1 ) !!!");
                 return true;
             }
         }
@@ -219,4 +211,5 @@ public class IutTools {
         System.out.println("										RES ===> "+ res);
         return res;
     }
+
 }

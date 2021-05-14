@@ -138,7 +138,7 @@ public class MathsTest {
 		try {
 			maths.division(4, 0);
 		} catch (MathsExceptions e) {
-			Assert.assertEquals(e.getMessage(),"Division par zero impossible");
+			Assert.assertEquals(e.getMessage(),"DIvision par zero impossible");
 			throw e;
 		}
 	}

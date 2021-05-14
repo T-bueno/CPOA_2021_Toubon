@@ -10,13 +10,16 @@ import static com.iut.as2021.enumerations.EOperation.*;
 /**
  * Classe récursive permettant de créer un arbre binaire d'opérations.
  *
+ * @author stephane.joyeux
+ *
  */
 
 public class MathResultat {
     private EOperation operation;
     private IMaths maths;
-
     private String expression;
+    private int resultat;
+    private int id;
 
     private MathResultat leftExpression;
 
@@ -47,6 +50,17 @@ public class MathResultat {
         switchLeftAndRightExpression();
         this.maths = new Maths();
     }
+    
+    public MathResultat(String expression, int resultat) {
+        this(expression);
+        this.setResultat(resultat);
+    }
+    
+    public MathResultat(String expression, int resultat, int id) {
+        this(expression,resultat);
+        this.setId(id);
+    }
+    
 
     protected double calculate() throws MathsExceptions {
         if (!INCONNUE.equals(operation)) {
@@ -105,4 +119,33 @@ public class MathResultat {
     private String getRightExpression(String expression, int pos) {
         return expression.substring(pos + 1).trim();
     }
+
+	public int getResultat() {
+		return resultat;
+	}
+
+	public void setResultat(int resultat) {
+		this.resultat = resultat;
+	}
+
+	public String getExpression() {
+		return expression;
+	}
+
+	public void setExpression(String expression) {
+		if (expression==null || expression.trim().length() == 0) {
+			throw new IllegalArgumentException("L'expression ne peut pas être vide !");
+		}
+		this.expression = expression;
+	}
+
+	public int getId() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 }

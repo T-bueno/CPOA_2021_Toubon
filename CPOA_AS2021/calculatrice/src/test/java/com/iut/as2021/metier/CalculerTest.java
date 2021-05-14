@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyInt;
 
 import com.iut.as2021.exceptions.MathsExceptions;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -22,9 +21,7 @@ public class CalculerTest {
 	@Before
 	public void setUp() {
 		calcul = new Calculer(new Maths());
-		/*
 		mathsMock = Mockito.mock(Maths.class);
-		 */
 	}
 
 	@Test
@@ -35,8 +32,31 @@ public class CalculerTest {
 	@Test
 	public void testCasSoustractionSimple() throws MathsExceptions {
 		assertEquals(calcul.run("2 - 3"), -1, 1);
+
 	}
 
+	@Test
+	public void testCasAdditionAvance() throws MathsExceptions {
+		assertEquals(calcul.run("8 + 2 + 5 + 4"), 19, 1);
+	}
+
+	@Test
+	public void testCasSoustractionAvance() throws MathsExceptions {
+		assertEquals(calcul.run("10 - 2 - 5 - 1"), 2, 1);
+	}
+
+	@Test
+	public void testCasAdditionSoustractionAvance() throws MathsExceptions {
+		assertEquals(calcul.run("15 - 5 + 2 -1 + 5"), 16, 1);
+	}
+
+	@Test
+	public void testCasMultiplicationSimple() throws MathsExceptions {
+		calcul.setMaths(mathsMock);
+		Mockito.when(mathsMock.multiplication(anyInt(), anyInt())).thenReturn(6);
+		assertEquals(calcul.run("7 * 1"), 6, 1);
+	}
+	
 	@Test
 	public void testMultiplicationCasGeneralNombrePositif() throws MathsExceptions {
 		assertEquals(calcul.run("4 * 2"), 8, 1);
@@ -71,10 +91,6 @@ public class CalculerTest {
 		assertEquals(calcul.run("-2 - 8"), -10,1);
 	}
 
-	@Test
-	public void testCasAdditionAvancée() throws MathsExceptions {
-		assertEquals(calcul.run("18 + 2 + 15 + 4"), 19, 1);
-	}
 	@Test
 	public void testMultiplicationCasGeneralNombresPositifNegatif() throws MathsExceptions {
 		assertEquals(calcul.run("-2 * 4"), -8,1);
@@ -125,17 +141,10 @@ public class CalculerTest {
 	}
 
 	@Test
-	public void testCasAdditionSoustractionAvancée() throws MathsExceptions {
-		assertEquals(calcul.run("15 - 5 + 2 - 1 + 5"), 16, 1);
-	}
-	@Test
 	public void testCasMultiplication() throws MathsExceptions {
 		assertEquals(calcul.run("7 * -1"), -7, 1);
 	}
-	@Test
-	public void testCasSoustractionAvancée() throws MathsExceptions {
-		assertEquals(calcul.run("1 - 2 - 5 - 1"), -7, 1);
-	}
+	
 
 	@Test
 	public void testCasPrioriteMultiplication() throws MathsExceptions {
@@ -152,8 +161,4 @@ public class CalculerTest {
 	}
 
 	 */
-
-
-
-
 }
