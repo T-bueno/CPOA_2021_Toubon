@@ -17,64 +17,55 @@ public class Calculer {
 	}
 
 
-	private int applyOperator(char operand, int firstNum, int secondNum) throws MathsExceptions {
-		int res = 0;
+	private double applyOperator(char operand, int firstNum, int secondNum) throws MathsExceptions {
+		double res = 0;
 
-		for (int i = 0; i<4 ;i++ ){
-			if (operand == '*'){
-				res = maths.multiplication(firstNum, secondNum);
-			}else if (operand == '+'){
-				res = maths.addition(firstNum, secondNum);
-			}else{
-				res = maths.soustration(firstNum, secondNum);
-			}
+		if (operand == '*'){
+			res = maths.multiplication(firstNum, secondNum);
+		}else if (operand == '+'){
+			res = maths.addition(firstNum, secondNum);
+		}else if (operand == '-'){
+			res = maths.soustration(firstNum, secondNum);
+		}else {
+			res = maths.division(firstNum, secondNum);
 		}
 		return res;
 	}
 
-	public static char getNextOperation(String expression, int pos) {
-		for (int i = pos; i < expression.length(); i++){
-			char c = expression.charAt(i);
-			if (c == 42 || c == 43 || c == 45 || c == 47){
-				return c;
-			}
-		}
-		return 32;
-	}
-
-	public static String getNextEntier(String expression, int pos) {
-		String res = "";
-		for (int i = pos; i < expression.length(); i++){
-			char c = expression.charAt(i);
-			if (c == 32 && res != "") {
-				return res;
-			}
-			if (c > 47 && c < 58) {
-				res += c;
-			}
-		}
-		return res;
-	}
 
 	public double run(String expression) throws MathsExceptions {
+		System.out.println("expression " + expression);
+		expression = expression.replaceAll(" ","");
+		System.out.println("expression " + expression);
+
 		int pos = 0;
 
-		char operand = getNextOperation(expression, pos);
+		String NextOperation = IutTools.getNextOperation(expression);
+		System.out.println("NEXTOPERATION1 = " + NextOperation);
 
-		pos = expression.indexOf(operand);
+		char operand = IutTools.getNextOperator(NextOperation, pos);
+		pos = IutTools.getPosNextOperator(NextOperation, pos);
 
-		String left = IutTools.getLeftExpression(expression, pos);
+		int right = Integer.valueOf(IutTools.getNextRightExpression(NextOperation, pos));
+		int left = Integer.valueOf(IutTools.getLastEntier(NextOperation, pos));
 
-		String right = IutTools.getRightExpression(expression, pos);
+		double result = applyOperator(operand, left, right);
 
-		int result = Integer.valueOf(left);
+		pos = NextOperation.length();
 
-		while (operand != 32) {
-			pos = expression.indexOf(operand, pos);
-			right = getNextEntier(expression, pos);
-			result = applyOperator(operand, result, Integer.valueOf(right));
-			pos += 1;
-			operand = getNextOperation(expression, pos);
+
+		int start = expression.indexOf(NextOperation);
+		expression.replace(NextOperation,"");
+
+		String expression1 = expression.substring(0,start);
+
+		String expression2 = expression.substring(NextOperation.length());
+
+
+		expression = expression1 + (int) result + expression2;
+
+		if (IutTools.getPosNextOperator(expression, 0) > 0){
+			result = run(expression);
 		}
 		return result;
 	}

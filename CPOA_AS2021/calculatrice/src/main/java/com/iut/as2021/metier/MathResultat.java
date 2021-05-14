@@ -10,8 +10,6 @@ import static com.iut.as2021.enumerations.EOperation.*;
 /**
  * Classe récursive permettant de créer un arbre binaire d'opérations.
  *
- * @author stephane.joyeux
- *
  */
 
 public class MathResultat {
