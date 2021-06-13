@@ -72,6 +72,9 @@
   <body>
      <center>
       <h1 class="title">Calculator<h1>
+      <s:form name="myForm"
+		action="controller.CalculatriceController.calculer.action"
+		method="POST">
       
       <table>
         <tr>
@@ -144,6 +147,7 @@
        </tr>
 
      </table>
+     </s:form>
      </center>
 
   </body>
